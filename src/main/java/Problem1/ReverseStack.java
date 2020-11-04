@@ -13,19 +13,19 @@ public class ReverseStack {
         if (stack.isEmpty() == false) {
             int x = stack.pop();
             reverseStack(stack);
-            insertAtBottom(stack,x);
+            reverseStackHelper(stack,x);
         }
 
     }
 
-    public static void insertAtBottom(Stack<Integer> stack, int x) {
+    public static void reverseStackHelper(Stack<Integer> stack, int x) {
 
         if (stack.isEmpty()) {
             stack.push(x);
             return;
         }
         int y = stack.pop();
-        insertAtBottom(stack, x);
+        reverseStackHelper(stack, x);
         stack.push(y);
     }
 }

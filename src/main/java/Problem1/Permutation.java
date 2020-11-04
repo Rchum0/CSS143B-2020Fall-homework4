@@ -7,28 +7,37 @@ public class Permutation {
     public static List<List<Integer>> permute(int[] nums) {
         // homework
         List<List<Integer>> result = new ArrayList<>();
-        if (nums == null || nums.length == 0) {
-            return result;
-        }
-        boolean[] used = new boolean[nums.length];
-        List<Integer> permutation = new ArrayList<>();
-        helper(nums, permutation, used, result);
+        permutationHelper(nums, 0, result);
         return result;
     }
 
-    private static void helper(int[] nums, List<Integer> permutation, boolean[] used, List<List<Integer>> result) {
-        if (permutation.size() == nums.length) {
-            result.add(new ArrayList<>(permutation));
+    private static void permutationHelper(int[] nums, int position, List<List<Integer>> result) {
+        if (nums == null || nums.length == 0) {
+            List<Integer> resultOne = new ArrayList<>();
+            result.add(resultOne);
             return;
         }
-        for (int i = 0; i < nums.length; i++) {
-            if (used[i])
-                continue;
-            used[i] = true;
-            permutation.add(nums[i]);
-            helper(nums, permutation, used, result);
-            permutation.remove(permutation.size() - 1);
-            used[i] = false;
+
+        if (position == nums.length - 1) {
+            List<Integer> resultOne = new ArrayList<>();
+            for (int i = 0; i < nums.length; i++) {
+                resultOne.add(nums[i]);
+            }
+            result.add(resultOne);
+            return;
+        }
+
+        for (int i = 0; i < nums.length - 1; i++) {
+
+            int temp = nums[i];
+            nums[i] = nums[position];
+            nums[position] = temp;
+
+            permutationHelper(nums, position + 1, result);
+
+            temp = nums[i];
+            nums[i] = nums[position];
+            nums[position] = temp;
         }
     }
 }
