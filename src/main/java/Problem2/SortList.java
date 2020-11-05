@@ -20,7 +20,7 @@ public class SortList {
         // homework
         if (head == null || head.next == null) {
             head = null;
-            return head;
+            return null;
         }
 
         int listSize = 1;
