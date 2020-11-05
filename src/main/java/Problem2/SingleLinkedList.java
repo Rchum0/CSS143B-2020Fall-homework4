@@ -1,5 +1,5 @@
 package Problem2;
-
+//finished
 public class SingleLinkedList {
     private ListNode head;
     private int size;
@@ -70,5 +70,21 @@ public class SingleLinkedList {
     // reverse the linked list RECURSIVELY
     public void reverse() {
         // homework
+        if(size <= 1)
+            return;
+        reverseList(head.next);
+    }
+
+    public ListNode reverseList(ListNode node) {
+
+        if (node.next == null) {
+            head.next = node;
+            return node;
+        }
+
+        ListNode temp = reverseList(node.next);
+        node.next = null;
+        temp.next = node;
+        return node;
     }
 }
