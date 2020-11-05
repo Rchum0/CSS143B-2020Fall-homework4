@@ -24,6 +24,7 @@ public class ReverseStack {
             stack.push(x);
             return;
         }
+
         int y = stack.pop();
         reverseStackHelper(stack, x);
         stack.push(y);
